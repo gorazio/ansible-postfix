@@ -51,3 +51,10 @@ smtp_tls_note_starttls_offer = yes
 {% else %}
 relayhost =
 {% endif %}
+
+{% if postfix_opendkim %}
+milter_default_action = accept
+milter_protocol = 6
+non_smtpd_milters = inet:localhost:12301
+smtpd_milters = inet:localhost:12301
+{% endif %}
